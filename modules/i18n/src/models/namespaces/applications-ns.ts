@@ -913,18 +913,57 @@ export interface ApplicationsNS {
             sections: {
                 applicationNativeAuthentication: {
                     heading: string;
-                    alerts: {
-                        clientAttestation: string;
-                    };
                     fields: {
                         enableAPIBasedAuthentication: {
                             hint: string;
                             label: string;
                         };
+                    };
+                };
+                clientAttestation: {
+                    heading: string;
+                    alerts: {
+                        clientAttestationAlert: string;
+                    };
+                    fields: {
                         enableClientAttestation: {
                             hint: string;
                             label: string;
                         };
+                        androidAttestationServiceCredentials: {
+                            hint: string;
+                            label: string;
+                            placeholder: string;
+                            validations: {
+                                empty: string;
+                            };
+                        };
+                    };
+                };
+                trustedApps: {
+                    heading: string;
+                    alerts: {
+                        trustedAppSettingsAlert: string;
+                        link: string;
+                    };
+                    fields: {
+                        enableTrustedApps: {
+                            hint: string;
+                            backLink: string;
+                            label: string;
+                        };
+                    };
+                    modal:{
+                        assertionHint: string;
+                        header: string;
+                        message: string;
+                        content: string;
+                    }
+                };
+                platformSettings: {
+                    heading: string;
+                    subTitle: string;
+                    fields: {
                         android: {
                             heading: string;
                             fields: {
@@ -936,13 +975,16 @@ export interface ApplicationsNS {
                                         empty: string;
                                     };
                                 };
-                                androidAttestationServiceCredentials: {
+                                keyHashes: {
                                     hint: string;
                                     label: string;
                                     placeholder: string;
                                     validations: {
                                         empty: string;
+                                        duplicate: string;
+                                        invalid: string;
                                     };
+                                    tooltip: string;
                                 };
                             };
                         };
