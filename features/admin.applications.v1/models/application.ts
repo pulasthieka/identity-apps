@@ -248,6 +248,17 @@ export interface ApplicationAdvancedConfigurationsViewInterface {
 }
 
 /**
+ *  Captures trusted apps related configuration.
+ */
+export interface TrustedAppConfigurationsInterface {
+    isFIDOTrustedApp?: boolean;
+    isConsentGranted?: boolean;
+    androidPackageName?: string;
+    androidThumbprints?: string[];
+    appleAppId?: string;
+}
+
+/**
  *  Captures application related configuration.
  */
 export interface AdvancedConfigurationsInterface {
@@ -265,6 +276,10 @@ export interface AdvancedConfigurationsInterface {
     enableClientAttestation?: boolean;
     androidPackageName?: string;
     androidAttestationServiceCredentials?: string;
+    trustedAppConfiguration?: TrustedAppConfigurationsInterface
+    enableFIDOTrustedApps?: boolean;
+    isConsentGranted?: boolean;
+    androidThumbprints?: string[];
     appleAppId?: string;
     skipConsentLogin?: boolean;
     skipConsentLogout?: boolean;

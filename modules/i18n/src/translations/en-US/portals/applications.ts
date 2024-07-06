@@ -1109,18 +1109,57 @@ export const applications: ApplicationsNS = {
             sections: {
                 applicationNativeAuthentication: {
                     heading: "App-Native Authentication",
-                    alerts: {
-                        clientAttestation: "For client attestation to work, the app-native authentication API must be enabled."
-                    },
                     fields: {
                         enableAPIBasedAuthentication: {
                             hint: "Select to authorize application to perform browserless, in-app authentication via app-native authentication API.",
                             label: "Enable app-native authentication API"
                         },
+                    }
+                },
+                clientAttestation: {
+                    heading: "Client Attestation",
+                    alerts: {
+                        clientAttestationAlert: "For client attestation to work, the app-native authentication API must be enabled."
+                    },
+                    fields: {
                         enableClientAttestation: {
                             hint: "Select to verify the integrity of the application by calling the attestation service of the hosting platform.",
                             label: "Enable client attestation"
                         },
+                        androidAttestationServiceCredentials: {
+                            hint: "Provide the Google service account credentials in the JSON format. This will be used to access the  Google Play Integrity Service.",
+                            label: "Service account credentials",
+                            placeholder: "Content of the JSON key file for the Google service account credentials",
+                            validations: {
+                                empty: "Google service account credentials are required for client attestation."
+                            }
+                        }
+                    }
+                },
+                trustedApps: {
+                    heading: "Trusted App Settings",
+                    alerts: {
+                        trustedAppSettingsAlert: "Enabling this feature will publish details under Platform Settings to a public endpoint shared across all Asgardeo organizations. This means that other organizations can access details about the application and the associated organization.",
+                        link: "Read for more.",
+                    },
+                    fields: {
+                        enableTrustedApps: {
+                            hint: "Select to trust the app for user login with passkey. Provide the details of the application under ",
+                            backLink: "Platform Settings.", 
+                            label: "Add as a FIDO trusted app"
+                        },
+                    },
+                    modal: {
+                        assertionHint : "I understand and wish to proceed.",
+                        header: "Are you sure?",
+                        message: "For validation purposes, Asgardeo requires that the details available under Platform Settings be listed on a public endpoint shared across all Asgardeo organizations.",
+                        content: ""
+                    }
+                },
+                platformSettings: {
+                    heading: "Platform Settings",
+                    subTitle: "The following platform specific configurations are needed when enabling client-attestation or trusted app related features",
+                    fields: {
                         android: {
                             heading: "Android",
                             fields: {
@@ -1132,14 +1171,18 @@ export const applications: ApplicationsNS = {
                                         empty: "Application package name is required for client attestation."
                                     }
                                 },
-                                androidAttestationServiceCredentials: {
-                                    hint: "Provide the Google service account credentials in the JSON format. This will be used to access the  Google Play Integrity Service.",
-                                    label: "Service account credentials",
-                                    placeholder: "Content of the JSON key file for the Google service account credentials",
+                                keyHashes: {
+                                    hint: "The SHA256 fingerprints related to the signing certificate of your application",
+                                    label: "Key Hashes",
+                                    placeholder: "D4:B9:A3",
                                     validations: {
-                                        empty: "Google service account credentials are required for client attestation."
-                                    }
-                                }
+                                        empty: "At least one key hash is required for client attestation.",
+                                        invalid: "Key hash is not valid.",
+                                        duplicate: "Same key hashes added",
+                                    },
+                                    tooltip: 'Add Thumbprint'
+
+                                },
                             }
                         },
                         apple: {
